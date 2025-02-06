@@ -19,7 +19,7 @@ class Task(models.Model):
     title = models.CharField(max_length=60, unique=True)
     description = models.TextField()
     priority = models.CharField(max_length=15, choices=level_priority)
-    status = models.CharField(max_length=30, choices=status)
+    status = models.CharField(max_length=30, choices=status, default='Not completed')
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
 

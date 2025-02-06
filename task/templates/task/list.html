@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #343a40; /* Dark background */
+            color: white; /* Light text color */
+        }
+        .task-item {
+            border-bottom: 1px solid #495057; /* Border for task items */
+            padding: 15px 0;
+        }
+        .high-priority {
+            color: red; /* High priority color */
+        }
+        .medium-priority {
+            color: orange; /* Medium priority color */
+        }
+        .low-priority {
+            color: green; /* Low priority color */
+        }
+        .done {
+            color: lightgreen; /* Done status color */
+        }
+        .not-done {
+            color: tomato; /* Not done status color */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Task List</h1>
+        <div class="task-list">
+            <div class="task-item d-flex justify-content-between align-items-center">
+
+                <div>
+                    <span class="high-priority">High Priority</span> |
+                    <span class="done">Done</span> |
+                    <strong>Task 1</strong> - Due: <em>2025-02-04</em>
+                </div>
+
+                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
