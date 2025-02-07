@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List</title>
+    <title>{{ user }} Task List</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -37,13 +37,13 @@
         <h1 class="text-center">Task List</h1>
         <div class="task-list">
             <div class="task-item d-flex justify-content-between align-items-center">
-
+                {% for task in tasks %}
                 <div>
-                    <span class="high-priority">High Priority</span> |
-                    <span class="done">Done</span> |
-                    <strong>Task 1</strong> - Due: <em>2025-02-04</em>
+                    <span class="high-priority">{{ task.priority }}</span> |
+                    <span class="done">{{ task.status }}</span> |
+                    <strong>{{ task.title }}</strong> - Due: <em>{{ task.created_at.year }}-{{ task.created_at.month }}-{{ task.created_at.day }}</em>
                 </div>
-
+                {% endfor %}
                 <a href="#" class="btn btn-warning btn-sm">Edit</a>
             </div>
         </div>

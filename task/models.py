@@ -21,7 +21,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=15, choices=level_priority)
     status = models.CharField(max_length=30, choices=status, default='Not completed')
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField()
+    slug = models.SlugField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
