@@ -25,3 +25,8 @@ def login_user(request):
 
 def register_user(request):
     pass
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('home:main')

@@ -93,8 +93,13 @@
     <!-- Welcome container -->
     <div class="welcome-container">
         <div class="welcome-text">Welcome</div>
-        <button class="login-button">Login</button>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'account:logout' %}"><button class="login-button">logout</button></a>
+        {% else %}
+            <a href="{% url 'account:login' %}"><button class="login-button">Login</button></a>
+        {% endif %}
     </div>
+
 
     <!-- Footer -->
     <footer>
