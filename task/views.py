@@ -16,9 +16,12 @@ def list_task(request):
 def add_task(request):
     user = request.user
     if request.method == "POST":
-        form = TaskForm(request.POST, user=user)
+        form = TaskForm(request.POST)
+
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.user = user
+            task.save()
             return redirect('task:list')
     else:
         form = TaskForm()

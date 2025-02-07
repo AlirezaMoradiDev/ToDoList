@@ -152,6 +152,10 @@ button{
         <label for="password">Description</label>
         {{ form.description }}
 
+        {{ form.priority.errors }}
+        <label for="password">priority</label>
+        {{ form.priority }}
+
         <button>Add</button>
 
     </form>

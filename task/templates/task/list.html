@@ -43,8 +43,9 @@
                     <span class="done">{{ task.status }}</span> |
                     <strong>{{ task.title }}</strong> - Due: <em>{{ task.created_at.year }}-{{ task.created_at.month }}-{{ task.created_at.day }}</em>
                 </div>
-                {% endfor %}
+
                 <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                {% endfor %}
             </div>
         </div>
     </div>
