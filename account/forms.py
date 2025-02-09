@@ -25,3 +25,11 @@ class LoginForm(forms.Form):
             raise ValidationError('This user is not registered.', code='unregistered')
         else:
             return super().clean()
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
+
+

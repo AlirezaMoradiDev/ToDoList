@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .forms import LoginForm
+from .forms import LoginForm, EditProfileForm
 
 
 def login_user(request):
@@ -30,3 +30,15 @@ def register_user(request):
 def logout_user(request):
     logout(request)
     return redirect('home:main')
+
+
+def edit_user(request):
+    user = request.user
+    if request.method == "POST":
+        form = EditProfileForm(data=request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('task:list')
+    else:
+        form = EditProfileForm(instance=user)
+    return render(request, 'account/edit.html', context={'form': form})
