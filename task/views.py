@@ -27,3 +27,8 @@ def add_task(request):
         form = TaskForm()
     return render(request, 'task/add.html', context={'user': user, 'form': form})
 
+
+@login_required
+def detail_task(request, slug):
+    task = Task.objects.get(slug=slug)
+    return render(request, 'task/detail.html', context={'task': task})

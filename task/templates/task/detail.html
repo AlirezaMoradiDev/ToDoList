@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ task.title }}</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .task-subject {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #bb86fc;
+    }
+
+    .task-description {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #cfcfcf;
+    }
+
+    .task-photo {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .task-details {
+      background-color: #2c2c2c;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .task-details p {
+      margin: 5px 0;
+      font-size: 0.9em;
+      color: #a0a0a0;
+    }
+
+    .task-details p strong {
+      color: #ffffff;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .actions button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    .edit-btn {
+      background-color: #ffa726;
+      color: #121212;
+    }
+
+    .delete-btn {
+      background-color: #ef5350;
+      color: #121212;
+    }
+
+    .status-btn {
+      background-color: #66bb6a;
+      color: #121212;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Task Subject -->
+    <div class="task-subject">{{ task.title }}</div>
+
+    <!-- Task Description -->
+    <div class="task-description">
+      <p>{{ task.description }}</p>
+    </div>
+
+    <!-- Task Photo -->
+    <img src="https://via.placeholder.com/800x400" alt="Task Photo" class="task-photo">
+
+    <!-- Task Details -->
+    <div class="task-details">
+      <p><strong>Creation Date:</strong> {{ task.created_at }}</p>
+      <p><strong>Importance:</strong> {{ task.priority }}</p>
+      <p><strong>Status:</strong> {{ task.priority}}</p>
+      <p><strong>Author:</strong> {{ task.user }}</p>
+      <p><strong>Views:</strong> 123</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn">Delete</button>
+      <button class="status-btn">Change Status</button>
+    </div>
+  </div>
+</body>
+</html>
