@@ -10,22 +10,28 @@
             background-color: #343a40; /* Dark background */
             color: white; /* Light text color */
         }
+
         .task-item {
             border-bottom: 1px solid #495057; /* Border for task items */
             padding: 15px 0;
         }
+
         .high-priority {
             color: red; /* High priority color */
         }
+
         .medium-priority {
             color: orange; /* Medium priority color */
         }
+
         .low-priority {
             color: green; /* Low priority color */
         }
+
         .done {
             color: lightgreen; /* Done status color */
         }
+
         .not-done {
             color: tomato; /* Not done status color */
         }
@@ -33,25 +39,26 @@
 </head>
 <body>
 
-    <div class="container mt-5">
-        <h1 class="text-center">Task List</h1>
-        <div class="task-list">
-            <div class="task-item d-flex justify-content-between align-items-center">
-                {% for task in tasks %}
+<div class="container mt-5">
+    <h1 class="text-center">Task List</h1>
+    <div class="task-list">
+        <div class="task-item d-flex justify-content-between align-items-center">
+            {% for task in tasks %}
                 <div>
                     <span class="high-priority">{{ task.priority }}</span> |
                     <span class="done">{{ task.status }}</span> |
-                    <strong>{{ task.title }}</strong> - Due: <em>{{ task.created_at.year }}-{{ task.created_at.month }}-{{ task.created_at.day }}</em>
+                    <strong>{{ task.title }}</strong> - Due:
+                    <em>{{ task.created_at.year }}-{{ task.created_at.month }}-{{ task.created_at.day }}</em>
                 </div>
 
-                <a href="{% url 'task:detail'  task.slug  %}" class="btn btn-warning btn-sm">view</a>
-                {% endfor %}
-            </div>
+                <a href="{% url 'task:detail'  task.slug %}" class="btn btn-warning btn-sm">view</a>
+            {% endfor %}
         </div>
     </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

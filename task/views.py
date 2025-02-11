@@ -31,4 +31,6 @@ def add_task(request):
 @login_required
 def detail_task(request, slug):
     task = Task.objects.get(slug=slug)
+    task.view += 1
+    task.save()
     return render(request, 'task/detail.html', context={'task': task})
