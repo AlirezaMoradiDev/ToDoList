@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .forms import LoginForm, EditProfileForm
+from .forms import LoginForm, EditProfileForm, RegisterUserForm
 
 
 def login_user(request):
@@ -13,10 +13,8 @@ def login_user(request):
             print('POST')
             form = LoginForm(request.POST)
             if form.is_valid():
-                print('1')
                 user = User.objects.get(username=form.cleaned_data.get('username'))
                 login(request, user)
-                print('ok')
                 return redirect('task:list')
         else:
             form = LoginForm()
@@ -24,7 +22,21 @@ def login_user(request):
 
 
 def register_user(request):
-    pass
+    if request.user.is_authenticated:
+        return redirect('task:list')
+    else:
+        if request.method == "POST":
+            form = RegisterUserForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                password = form.cleaned_data.get('password')
+                user.set_password(password)
+                user.save()
+                login(request, user)
+                return redirect('home:main')
+        else:
+            form = RegisterUserForm()
+    return render(request, 'account/register.html', context={'form': form})
 
 
 def logout_user(request):

@@ -33,3 +33,19 @@ class EditProfileForm(forms.ModelForm):
         fields = ['username', 'email', 'first_name', 'last_name']
 
 
+class RegisterUserForm(forms.ModelForm):
+    password = forms.CharField()
+    password_confirm = forms.CharField()
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+
+    def clean(self):
+        super().clean()
+        password = self.cleaned_data.get('password')
+        confirm = self.cleaned_data.get('password_confirm')
+
+        if password != confirm:
+            raise ValidationError('password and confirm not equal')
+
