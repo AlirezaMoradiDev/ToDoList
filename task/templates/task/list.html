@@ -9,51 +9,165 @@
         body {
             background-color: #343a40; /* Dark background */
             color: white; /* Light text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+        }
+
+        .site-header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-nav ul li {
+            margin-left: 20px;
+        }
+
+        .main-nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav ul li a:hover {
+            color: #1abc9c;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        .search-box button {
+            padding: 8px 12px;
+            background-color: #1abc9c;
+            border: none;
+            border-radius: 4px;
+            color: #ecf0f1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background-color: #16a085;
+        }
+
+        .task-list {
+            margin-top: 20px;
         }
 
         .task-item {
-            border-bottom: 1px solid #495057; /* Border for task items */
+            border-bottom: 1px solid #495057;
             padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-item div {
+            display: flex;
+            align-items: center;
+        }
+
+        .task-item span {
+            margin-right: 10px;
         }
 
         .high-priority {
-            color: red; /* High priority color */
+            color: red;
         }
 
         .medium-priority {
-            color: orange; /* Medium priority color */
+            color: orange;
         }
 
         .low-priority {
-            color: green; /* Low priority color */
+            color: green;
         }
 
         .done {
-            color: lightgreen; /* Done status color */
+            color: lightgreen;
         }
 
         .not-done {
-            color: tomato; /* Not done status color */
+            color: tomato;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #343a40;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            border-color: #d39e00;
         }
     </style>
 </head>
 <body>
-
+<header class="site-header">
+    <div class="container">
+        <div class="logo">
+            <a href="#">ToDoList</a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{% url 'home:main' %}">Home</a></li>
+                <li><a href="{% url 'task:add' %}">New Task</a></li>
+                <li><a href="{% url 'account:logout' %}">Logout</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button type="submit">Go</button>
+        </div>
+    </div>
+</header>
 <div class="container mt-5">
     <h1 class="text-center">Task List</h1>
     <div class="task-list">
-        <div class="task-item d-flex justify-content-between align-items-center">
-            {% for task in tasks %}
+        {% for task in tasks %}
+            <div class="task-item">
                 <div>
-                    <span class="high-priority">{{ task.priority }}</span> |
-                    <span class="done">{{ task.status }}</span> |
+                    <span class="high-priority"> {{ task.priority }} </span> |
+                    <span class="done"> {{ task.status }} </span> |
                     <strong>{{ task.title }}</strong> - Due:
                     <em>{{ task.created_at.year }}-{{ task.created_at.month }}-{{ task.created_at.day }}</em>
                 </div>
-
-                <a href="{% url 'task:detail'  task.slug %}" class="btn btn-warning btn-sm">view</a>
-            {% endfor %}
-        </div>
+                <a href="{% url 'task:detail' task.slug %}" class="btn btn-warning btn-sm">View</a>
+            </div>
+        {% endfor %}
     </div>
 </div>
 
