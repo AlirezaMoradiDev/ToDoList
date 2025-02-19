@@ -108,16 +108,16 @@
     <div class="task-details">
       <p><strong>Creation Date:</strong> {{ task.created_at }}</p>
       <p><strong>Importance:</strong> {{ task.priority }}</p>
-      <p><strong>Status:</strong> {{ task.priority}}</p>
+      <p><strong>Status:</strong> {{ task.status}}</p>
       <p><strong>Author:</strong> {{ task.user }}</p>
       <p><strong>Views:</strong> {{ task.view }}</p>
     </div>
 
     <!-- Actions -->
     <div class="actions">
-      <button class="edit-btn">Edit</button>
+        <a href="{% url 'task:edit' task.slug %}"><button class="edit-btn">Edit</button></a>
       <button class="delete-btn">Delete</button>
-      <button class="status-btn">Change Status</button>
+        <a href="{% url 'task:change status' task.slug %}"><button class="status-btn">Change Status</button></a>
     </div>
   </div>
 </body>

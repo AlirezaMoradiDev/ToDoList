@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .forms import TaskForm
+from .forms import TaskForm, EditForm
 from .models import Task
 
 
@@ -34,3 +34,28 @@ def detail_task(request, slug):
     task.view += 1
     task.save()
     return render(request, 'task/detail.html', context={'task': task})
+
+
+@login_required
+def edit_task(request, slug):
+    task = Task.objects.get(slug=slug)
+    if request.method == "POST":
+        form = EditForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+    else:
+        form = EditForm(instance=task)
+    return render(request, 'task/edit.html', context={'form': form, 'task': task})
+
+
+@login_required
+def change_status(request, slug):
+    task = Task.objects.get(slug=slug)
+    if task.status == 'Not completed':
+        task.status = 'completed'
+        task.save()
+    else:
+        task.status = 'Not completed'
+        task.save()
+    return redirect('task:list')
+
