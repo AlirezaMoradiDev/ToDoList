@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'task',
     'account',
-    'home'
+    'home',
+    'django_cleanup.apps.CleanupConfig',
 
 ]
 
