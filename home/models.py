@@ -9,7 +9,7 @@ class Information(models.Model):
     channel_telegram = models.URLField()
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=254)
-    icon = models.ImageField(upload_to='information')
+    icon = models.ImageField(upload_to='information', null=True, blank=True)
 
 
 

@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,6 +89,7 @@
     </style>
 </head>
 <body>
+
     <!-- Particle animation background -->
     <div id="particles-js"></div>
 
@@ -109,9 +112,6 @@
 
 
     <!-- Footer -->
-    <footer>
-        <p>© 2023 Your Company. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
 
     <!-- Particle.js library -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -223,5 +223,6 @@
             retina_detect: true
         });
     </script>
+    {% endblock %}
 </body>
 </html>

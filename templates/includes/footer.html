@@ -1,0 +1,47 @@
+{% load static %}
+
+<footer style="background-color: #111; padding: 2rem 1.5rem; border-top: 1px solid #333;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
+
+
+      <div>
+        <h3 style="font-size: 18px; margin-bottom: 1rem; color: #4CAF50;">{{ information.name }}</h3>
+        <p style="font-size: 14px; color: #4CAF50;">{{ information.address }}</p>
+      </div>
+
+
+      <div>
+        <h3 style="font-size: 18px; margin-bottom: 1rem; color: #4CAF50;">Contact</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 0.5rem;">
+            <img src="{% static 'icon/gmail.png' %}" alt="Email" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 0.5rem; filter: invert(68%) sepia(61%) saturate(495%) hue-rotate(72deg) brightness(95%) contrast(91%);">
+            <a href="mailto:{{ information.email }}" style="text-decoration: none; color: #4CAF50; font-size: 14px;">{{ information.email }}</a>
+          </li>
+          <li>
+            <img src="{% static 'icon/phone.svg' %}" alt="Phone" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 0.5rem; filter: invert(68%) sepia(61%) saturate(495%) hue-rotate(72deg) brightness(95%) contrast(91%);">
+            <a href="tel:{{ information.phone }}" style="text-decoration: none; color: #4CAF50; font-size: 14px;">{{ information.phone }}</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <div>
+        <h3 style="font-size: 18px; margin-bottom: 1rem; color: #4caf50;">Follow Me</h3>
+        <div style="display: flex; gap: 1rem;">
+          <a href="{{ information.github }}" target="_blank">
+            <img src="{% static 'icon/github.png' %}" alt="GitHub" style="width: 24px; height: 24px; filter: invert(68%) sepia(61%) saturate(495%) hue-rotate(72deg) brightness(95%) contrast(91%);">
+          </a>
+          <a href="{{ information.channel_telegram }}" target="_blank">
+            <img src="{% static 'icon/telegram.png' %}" alt="Telegram" style="width: 24px; height: 24px; filter: invert(68%) sepia(61%) saturate(495%) hue-rotate(72deg) brightness(95%) contrast(91%);">
+          </a>
+          <a href="{{ information.instagram }}" target="_blank">
+            <img src="{% static 'icon/instagram.png' %}" alt="Instagram" style="width: 24px; height: 24px; filter: invert(68%) sepia(61%) saturate(495%) hue-rotate(72deg) brightness(95%) contrast(91%);">
+          </a>
+          <a href="{{ information.linkedin }}" target="_blank">
+            <img src="{% static 'icon/linkedin.png' %}" alt="LinkedIn" style="width: 24px; height: 24px; filter: invert(68%) sepia(61%) saturate(495%) hue-rotate(72deg) brightness(95%) contrast(91%);">
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
