@@ -23,6 +23,7 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(null=True, blank=True)
     view = models.IntegerField(default=0, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to='tasks/')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

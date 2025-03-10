@@ -139,22 +139,10 @@ button{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h3>New Task</h3>
-        {{ form.non_field_errors }}
-
-        {{ form.title.errors }}
-        <label for="username">Title</label>
-        {{ form.title }}
-
-        {{ form.description.errors }}
-        <label for="password">Description</label>
-        {{ form.description }}
-
-        {{ form.priority.errors }}
-        <label for="password">priority</label>
-        {{ form.priority }}
+        {{ form.as_p }}
 
         <button>Add</button>
 

@@ -12,7 +12,7 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['priority', 'title', 'description']
+        fields = ['priority', 'title', 'description', 'image']
 
         widgets = {
             'description': forms.TextInput()

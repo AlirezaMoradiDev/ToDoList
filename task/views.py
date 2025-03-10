@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import TaskForm, EditForm
 from .models import Task
@@ -13,10 +14,11 @@ def list_task(request):
 
 
 @login_required
+@csrf_exempt
 def add_task(request):
     user = request.user
     if request.method == "POST":
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, request.FILES)
 
         if form.is_valid():
             task = form.save(commit=False)
