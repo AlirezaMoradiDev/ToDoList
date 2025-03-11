@@ -165,7 +165,7 @@
                     <strong>{{ task.title }}</strong> - Due:
                     <em>{{ task.created_at.year }}-{{ task.created_at.month }}-{{ task.created_at.day }}</em>
                 </div>
-                <a href="{% url 'task:detail' task.slug %}" class="btn btn-warning btn-sm">View</a>
+                <a href="{% url 'task:detail' task.id %}" class="btn btn-warning btn-sm">View</a>
             </div>
         {% endfor %}
     </div>

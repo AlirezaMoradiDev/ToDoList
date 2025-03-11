@@ -31,16 +31,16 @@ def add_task(request):
 
 
 @login_required
-def detail_task(request, slug):
-    task = Task.objects.get(slug=slug)
+def detail_task(request, id):
+    task = Task.objects.get(id=id)
     task.view += 1
     task.save()
     return render(request, 'task/detail.html', context={'task': task})
 
 
 @login_required
-def edit_task(request, slug):
-    task = Task.objects.get(slug=slug)
+def edit_task(request, id):
+    task = Task.objects.get(id=id)
     if request.method == "POST":
         form = EditForm(request.POST, instance=task)
         if form.is_valid():
@@ -51,8 +51,8 @@ def edit_task(request, slug):
 
 
 @login_required
-def change_status(request, slug):
-    task = Task.objects.get(slug=slug)
+def change_status(request, id):
+    task = Task.objects.get(id=id)
     if task.status == 'Not completed':
         task.status = 'completed'
         task.save()
