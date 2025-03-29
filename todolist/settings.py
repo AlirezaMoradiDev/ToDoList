@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account',
     'home',
     'django_cleanup.apps.CleanupConfig',
+    'api',
 
 ]
 
