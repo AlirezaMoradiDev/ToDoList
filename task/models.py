@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.text import slugify
 
 
+
+
 class Task(models.Model):
     level_priority = [
         ('low', 'LOW'),
@@ -24,6 +26,7 @@ class Task(models.Model):
     slug = models.SlugField(null=True, blank=True)
     view = models.IntegerField(default=0, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='tasks/')
+    objects = models.Manager()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

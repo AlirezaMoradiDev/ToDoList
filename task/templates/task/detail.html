@@ -116,7 +116,7 @@
     <!-- Actions -->
     <div class="actions">
         <a href="{% url 'task:edit' task.id %}"><button class="edit-btn">Edit</button></a>
-      <button class="delete-btn">Delete</button>
+        <a href="{% url 'task:delete' task.id %}"><button class="delete-btn">Delete</button></a>
         <a href="{% url 'task:change status' task.id %}"><button class="status-btn">Change Status</button></a>
     </div>
   </div>

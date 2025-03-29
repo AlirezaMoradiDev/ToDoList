@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from .forms import TaskForm, EditForm
@@ -61,3 +61,11 @@ def change_status(request, id):
         task.save()
     return redirect('task:list')
 
+
+def delete_task(request, id):
+    task = Task.objects.get(id=id)
+    if request.method == "POST":
+        task.delete()
+        return HttpResponseRedirect("/")
+
+    return render(request, "task/delete.html", context={})
