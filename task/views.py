@@ -10,7 +10,8 @@ from .models import Task
 def list_task(request):
     user = request.user
     tasks = Task.objects.filter(user=user)
-    return render(request, 'task/list.html', context={'tasks': tasks, 'user': user})
+    count_tasks = Task.customManager.counter_object()
+    return render(request, 'task/list.html', context={'tasks': tasks, 'user': user, 'count': count_tasks})
 
 
 @login_required

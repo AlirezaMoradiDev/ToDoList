@@ -3,6 +3,9 @@ from django.db import models
 from django.utils.text import slugify
 
 
+class TaskManager(models.Manager):
+    def counter_object(self):
+        return len(self.all())
 
 
 class Task(models.Model):
@@ -27,6 +30,7 @@ class Task(models.Model):
     view = models.IntegerField(default=0, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to='tasks/')
     objects = models.Manager()
+    customManager = TaskManager()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -34,4 +38,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
-
