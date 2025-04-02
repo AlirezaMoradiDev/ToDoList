@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,8 +103,11 @@
     </div>
 
     <!-- Task Photo -->
-    <img src="{{ task.image.url }}" alt="Task Photo" class="task-photo">
-
+    {% if task.image %}
+        <img src="{{ task.image.url }}" alt="Task Photo" class="task-photo">
+    {% else %}
+        <img src="{% static 'icon/github.png' %}" alt="">
+    {% endif %}
     <!-- Task Details -->
     <div class="task-details">
       <p><strong>Creation Date:</strong> {{ task.created_at }}</p>
