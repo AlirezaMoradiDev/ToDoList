@@ -75,6 +75,15 @@
       font-size: 0.9em;
       font-weight: bold;
     }
+    .logout-btn {
+      background-color: #ff0000;
+      color: #121212;
+    }
+
+    .back-btn {
+      background-color: #0050ff;
+      color: #121212;
+    }
 
     .edit-btn {
       background-color: #ffa726;
@@ -104,9 +113,9 @@
 
     <!-- Task Photo -->
     {% if task.image %}
-        <img src="{{ task.image.url }}" alt="Task Photo" class="task-photo">
+        <img style="width: 150px" src="{{ task.image.url }}" alt="Task Photo" class="task-photo">
     {% else %}
-        <img src="{% static 'icon/github.png' %}" alt="">
+        <img style="width: 150px" src="{% static 'icon/istockphoto-1055079680-612x612.jpg' %}" alt="">
     {% endif %}
     <!-- Task Details -->
     <div class="task-details">
@@ -119,6 +128,8 @@
 
     <!-- Actions -->
     <div class="actions">
+        <a href="{% url 'account:logout' %}"><button class="logout-btn">Logout</button></a>
+        <a href="{% url 'task:list' %}"><button class="back-btn">Back to Menu</button></a>
         <a href="{% url 'task:edit' task.id %}"><button class="edit-btn">Edit</button></a>
         <a href="{% url 'task:delete' task.id %}"><button class="delete-btn">Delete</button></a>
         <a href="{% url 'task:change status' task.id %}"><button class="status-btn">Change Status</button></a>
