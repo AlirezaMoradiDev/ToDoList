@@ -24,7 +24,7 @@ A simple and efficient **To-Do List** web application built with Django. This pr
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/yourusername/todolist.git
+   git clone https://github.com/alireza200411/todolist.git
    cd todolist
    ```
 
