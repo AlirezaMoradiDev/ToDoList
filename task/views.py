@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-
+from django.core.paginator import Paginator
 from .forms import TaskForm, EditForm
 from .models import Task
 
@@ -10,8 +10,11 @@ from .models import Task
 def list_task(request):
     user = request.user
     tasks = Task.objects.filter(user=user)
-    count_tasks = Task.customManager.counter_object()
-    return render(request, 'task/list.html', context={'tasks': tasks, 'user': user, 'count': count_tasks})
+    paginator = Paginator(tasks, 2)
+    page_number = request.GET.get('page')
+    object_page = paginator.get_page(page_number)
+    count_tasks = Task.customManager.counter_object() # this must refactor
+    return render(request, 'task/list.html', context={'tasks': object_page, 'user': user, 'count': count_tasks})
 
 
 @login_required

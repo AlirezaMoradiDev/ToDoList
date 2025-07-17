@@ -32,6 +32,9 @@ class Task(models.Model):
     objects = models.Manager()
     customManager = TaskManager()
 
+    class Meta:
+        ordering = ('-title', )
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         return super().save()
