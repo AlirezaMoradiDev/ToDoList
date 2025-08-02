@@ -197,12 +197,12 @@
         {% endfor %}
     </div>
     <div class="pagination">
-        {% if tasks.has_other_pages %}
-            {% if tasks.has_previous %}
-                <a href="?page={{ tasks.previous_page_number }}" class="prev-page {% if current_page == 1 %}disabled{% endif %}">&laquo;previous </a>
+        {% if page_obj.has_other_pages %}
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="prev-page {% if page_obj.current_page == 1 %}disabled{% endif %}">&laquo;previous </a>
             {% endif %}
-            {% if tasks.has_next %}
-                <a href="?page={{ tasks.next_page_number }}" class="next-page">Next &raquo;</a>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="next-page">Next &raquo;</a>
             {% endif %}
             <span class="page-number">{{ current_page }}</span>
             </div>
