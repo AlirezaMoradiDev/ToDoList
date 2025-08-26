@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'home',
     'django_cleanup.apps.CleanupConfig',
     'api',
+    'rest_framework',
 
 ]
 

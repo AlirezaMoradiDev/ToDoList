@@ -6,6 +6,9 @@ from django.views.generic import ListView
 from .forms import TaskForm, EditForm
 from .models import Task
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import TaskSerializer
 
 
 @login_required
@@ -85,3 +88,9 @@ def delete_task(request, id):
         return HttpResponseRedirect("/")
 
     return render(request, "task/delete.html", context={})
+
+@api_view(['get'])
+def task_api(request):
+    tasks = Task.objects.all()
+    ser = TaskSerializer(tasks, many=True)
+    return Response(data=ser.data)
