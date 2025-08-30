@@ -20,7 +20,6 @@ INSTALLED_APPS = [
     'account',
     'home',
     'django_cleanup.apps.CleanupConfig',
-    'api',
     'rest_framework',
 
 ]
@@ -98,3 +97,4 @@ MEDIA_URL = 'media/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'account.MyUser'

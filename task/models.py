@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
+from account.models import MyUser
 
 
 class TaskManager(models.Manager):
@@ -20,7 +21,7 @@ class Task(models.Model):
         ('completed', 'COMPLETED')
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=60, unique=True)
     description = models.TextField()
     priority = models.CharField(max_length=15, choices=level_priority)
