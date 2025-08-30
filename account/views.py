@@ -1,7 +1,10 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
+from .models import MyUser
 from django.shortcuts import render, redirect
 from .forms import LoginForm, EditProfileForm, RegisterUserForm
+from rest_framework.decorators import api_view
+from .serializer import UserSerializer
+from rest_framework.response import Response
 
 
 def login_user(request):
@@ -13,7 +16,7 @@ def login_user(request):
             print('POST')
             form = LoginForm(request.POST)
             if form.is_valid():
-                user = User.objects.get(username=form.cleaned_data.get('username'))
+                user = MyUser.objects.get(username=form.cleaned_data.get('username'))
                 login(request, user)
                 return redirect('task:list')
         else:
@@ -54,3 +57,9 @@ def edit_user(request):
     else:
         form = EditProfileForm(instance=user)
     return render(request, 'account/edit.html', context={'form': form})
+
+@api_view(['GET'])
+def user_api(request):
+    users = MyUser.objects.all()
+    ser = UserSerializer(instance=users, many=True)
+    return Response(ser.data)

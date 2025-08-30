@@ -89,7 +89,7 @@ def delete_task(request, id):
 
     return render(request, "task/delete.html", context={})
 
-@api_view(['get'])
+@api_view(['GET'])
 def task_api(request):
     tasks = Task.objects.all()
     ser = TaskSerializer(tasks, many=True)

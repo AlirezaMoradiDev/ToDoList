@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
+from .models import MyUser
 from django.http import request
 from django.forms import ValidationError
 
@@ -29,7 +29,7 @@ class LoginForm(forms.Form):
 
 class EditProfileForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = MyUser
         fields = ['username', 'email', 'first_name', 'last_name']
 
 
@@ -38,7 +38,7 @@ class RegisterUserForm(forms.ModelForm):
     password_confirm = forms.CharField()
 
     class Meta:
-        model = User
+        model = MyUser
         fields = ['first_name', 'last_name', 'username', 'email', 'password']
 
     def clean(self):
@@ -48,4 +48,3 @@ class RegisterUserForm(forms.ModelForm):
 
         if password != confirm:
             raise ValidationError('password and confirm not equal')
-
