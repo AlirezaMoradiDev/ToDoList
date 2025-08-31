@@ -30,7 +30,7 @@ class LoginForm(forms.Form):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = MyUser
-        fields = ['username', 'email', 'first_name', 'last_name']
+        fields = ['username', 'email', 'firstname', 'lastname']
 
 
 class RegisterUserForm(forms.ModelForm):
@@ -39,7 +39,7 @@ class RegisterUserForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+        fields = ['firstname', 'lastname', 'username', 'email', 'password']
 
     def clean(self):
         super().clean()
