@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'home',
     'django_cleanup.apps.CleanupConfig',
     'rest_framework',
+    'ticket',
 
 ]
 
