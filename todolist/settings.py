@@ -1,11 +1,16 @@
+import os
 from os import path
 from pathlib import Path
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-ymkv9@xhwtfzbz0sgfauw+9&lv+javlquo^hsvwc+g!@9&m$p3'
 
 DEBUG = True
+
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 ALLOWED_HOSTS = []
 
@@ -58,8 +63,12 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'todolist_',
+        'USER': 'postgres',
+        'PASSWORD': '08432109132048',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
