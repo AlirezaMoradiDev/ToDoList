@@ -5,7 +5,7 @@ from account.models import MyUser
 
 class Ticket(models.Model):
     title = models.CharField(max_length=60)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)

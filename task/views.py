@@ -91,6 +91,7 @@ def delete_task(request, id):
 
 @api_view(['GET'])
 def task_api(request):
-    tasks = Task.objects.all()
+    user = request.user
+    tasks = Task.objects.filter(user=user)
     ser = TaskSerializer(tasks, many=True)
     return Response(data=ser.data)
