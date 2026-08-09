@@ -58,3 +58,12 @@ class AddTicket(APIView):
         else:
             return Response(ser.errors)
 
+
+class UpdateTicket(APIView):
+    def put(self, request, pk):
+        ticket = Ticket.objects.get(id=pk)
+        serializer = TicketSerializer(data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.update(instance=ticket, validated_data=serializer.validated_data)
+            return Response({'response': 'successful'})
+        return Response(serializer.errors)

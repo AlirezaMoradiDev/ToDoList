@@ -7,4 +7,5 @@ urlpatterns = [
     path('list', views.list_ticket, name='list'),
     path('api', views.list_ticket_api, name='api'),
     path('api/add', views.AddTicket.as_view(), name='add api'),
+    path('api/update/<int:pk>', views.UpdateTicket.as_view(), name='update')
 ]

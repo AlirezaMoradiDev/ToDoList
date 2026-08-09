@@ -15,7 +15,7 @@ A simple and efficient **To-Do List** web application built with Django. This pr
 ---
 
 ## 🛠 Technologies Used
-- **Backend**: Django, SQLite
+- **Backend**: Django, POSTGRESQL
 - **Frontend**: HTML, CSS, JavaScript
 - **Deployment**: Docker (optional)
 

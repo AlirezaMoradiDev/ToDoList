@@ -95,3 +95,4 @@ def task_api(request):
     tasks = Task.objects.filter(user=user)
     ser = TaskSerializer(tasks, many=True)
     return Response(data=ser.data)
+
