@@ -3,15 +3,15 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, password=None):
         if not username:
             raise ValueError('Users must have an username')
-        if not email:
-            raise ValueError('Users must have an email')
+
 
         user = self.model(
             username = username,
-            email=self.normalize_email(email),
+
+
 
         )
 
@@ -19,10 +19,9 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password):
+    def create_superuser(self, username, password):
         user = self.create_user(
             username=username,
-            email=email,
             password=password,
         )
         user.is_admin = True
@@ -39,7 +38,9 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
-        unique=True,
+        default='aa@gmail.com'
+        
+        
     )
     date_of_birth = models.DateField(null=True, blank=True)
     is_active = models.BooleanField(default=True)

@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'ticket',
     'rest_authtoken',
-
+    'rest_framework.authtoken'
 
 ]
 
@@ -98,6 +98,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
