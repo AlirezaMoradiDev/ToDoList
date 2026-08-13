@@ -9,7 +9,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import TaskSerializer
-
+from rest_framework.views import APIView
+from rest_framework import authentication
+from rest_framework import status
 
 @login_required
 def list_task(request):
@@ -89,10 +91,39 @@ def delete_task(request, id):
 
     return render(request, "task/delete.html", context={})
 
-@api_view(['GET'])
-def task_api(request):
-    user = request.user
-    tasks = Task.objects.filter(user=user)
-    ser = TaskSerializer(tasks, many=True)
-    return Response(data=ser.data)
+class TaskView(APIView):
+    authentication_classes = [authentication.TokenAuthentication]
+    def get(self, request):
+        tasks = Task.objects.filter(user=request.user)
+        serializer = TaskSerializer(tasks, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
+    def post(self, request):
+        serializer = TaskSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['user'] = request.user
+            serializer.save()
+            return Response({'status': 'added'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
+    def patch(self, request, pk):
+        try:
+            task = Task.objects.get(id=pk)
+        except:
+            return Response({"error": "Task not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = TaskSerializer(instance=task, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 'updated'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors)
+
+    def delete(self, request, pk):
+        try:
+            task = Task.objects.get(id=pk)
+        except:
+            return Response({"error": "Task not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        task.delete()
+        return Response({'status': 'deleted'}, status=status.HTTP_204_NO_CONTENT)
